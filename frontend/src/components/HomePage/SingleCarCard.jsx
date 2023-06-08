@@ -1,0 +1,51 @@
+import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
+const SingleCarCard = ({ img, title, price, kms, orginalPaint }) => {
+  const navigate = useNavigate()
+  const handleRoute = () => {
+    navigate(`/dfdsd`)
+  }
+  return (
+    <Flex
+      minW={'250px'}
+      flexDir={'column'}
+      borderRadius={'md'}
+      boxShadow={'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'}
+    >
+      <Box onClick={handleRoute} cursor={'pointer'}>
+        <Image src={img} />
+        <Box p={'1rem'}>
+          <Flex gap={'1rem'} align={'center'}>
+            <Heading fontWeight={'500'} fontSize={'1.2rem'}>
+              {title.substring(0, 20)}
+              {title.length >= 20 && '...'}
+            </Heading>
+            <Text
+              fontWeight={'500'}
+              fontSize={{ base: '0.9rem', md: '1.1rem', lg: '1.3rem' }}
+            >
+              ₹{price} Lacks
+            </Text>
+          </Flex>
+          <Text> Color:{orginalPaint}</Text>
+          <Flex gap={'0.7rem'} align={'center'}>
+            <Text>{kms}kms</Text>
+            <Text>| Petrol</Text>
+            <Text>| Manual</Text>
+          </Flex>
+          <Text color={'orange.500'}>More Details</Text>
+        </Box>
+      </Box>
+      {false && (
+        <Flex justify={'space-between'} px='1rem' pb='0.5rem'>
+          <Button colorScheme='green'>Edit</Button>
+          <Button colorScheme='red'>Delete</Button>
+        </Flex>
+      )}
+    </Flex>
+  )
+}
+
+export default SingleCarCard
