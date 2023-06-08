@@ -1,11 +1,22 @@
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import EditModal from '../Profile/EditModal'
 
-const SingleCarCard = ({ img, title, price, kms, orginalPaint }) => {
+const SingleCarCard = ({
+  _id,
+  img,
+  title,
+  price,
+  kms,
+  orginalPaint,
+  handleEdit,
+  handleDelete,
+  currentUser,
+}) => {
   const navigate = useNavigate()
   const handleRoute = () => {
-    navigate(`/dfdsd`)
+    navigate(`/${_id}`)
   }
   return (
     <Flex
@@ -38,10 +49,12 @@ const SingleCarCard = ({ img, title, price, kms, orginalPaint }) => {
           <Text color={'orange.500'}>More Details</Text>
         </Box>
       </Box>
-      {false && (
+      {currentUser && (
         <Flex justify={'space-between'} px='1rem' pb='0.5rem'>
-          <Button colorScheme='green'>Edit</Button>
-          <Button colorScheme='red'>Delete</Button>
+          <EditModal />
+          <Button onClick={handleDelete} colorScheme='red'>
+            Delete
+          </Button>
         </Flex>
       )}
     </Flex>

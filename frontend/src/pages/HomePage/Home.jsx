@@ -13,7 +13,7 @@ import CarList from '../../components/HomePage/CarList'
 const Home = () => {
   return (
     <Flex paddingTop={'2rem'}>
-      <Box display={{ base: 'none', md: 'block' }}>
+      <Box display={{ base: 'none', lg: 'block' }}>
         <Filters />
       </Box>
       <Box flexGrow={'1'}>

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SingleCarCard from './SingleCarCard'
 import { Grid } from '@chakra-ui/react'
+import axios from 'axios'
 
 const CarList = () => {
   const data = [
@@ -89,18 +90,27 @@ const CarList = () => {
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
   ]
+  const [list, setList] = useState([])
+  let fetch = async () => {
+    let res = await axios.get('https://carhub-mlki.onrender.com/cars')
+    setList(res.data.allCars)
+  }
+  useEffect(() => {
+    fetch()
+  }, [])
   return (
     <Grid
       templateColumns={{
         base: 'repeat(1,1fr)',
         md: 'repeat(2,1fr)',
-        lg: 'repeat(3,1fr)',
+
+        xl: 'repeat(3,1fr)',
       }}
       placeItems={'center'}
       gap={'1rem'}
       p={'1rem'}
     >
-      {data.map((item) => {
+      {list?.map((item) => {
         return <SingleCarCard key={item.price} {...item} />
       })}
     </Grid>
