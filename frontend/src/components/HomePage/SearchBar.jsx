@@ -13,12 +13,12 @@ const SearchBar = () => {
   }
   const fetchSuggestion = async () => {
     if (!text) return
-    console.log('gone')
+
     try {
       const res = await axios(
         `https://carhub-mlki.onrender.com/cars?text=${text}`
       )
-      console.log('came')
+
       setSuggestions(res.data.allCars)
     } catch (error) {
       console.log(error)

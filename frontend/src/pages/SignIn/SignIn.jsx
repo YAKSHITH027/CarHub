@@ -39,7 +39,7 @@ const SignIn = () => {
         data
       )
 
-      if (res.status === 200) {
+      if (res.status === 201) {
         toast({
           title: 'login successful',
           description: 'have a great day.',
@@ -69,8 +69,7 @@ const SignIn = () => {
       console.log(error)
     }
   }
-  console.log(errors)
-  // console.log("hello", register, handleSubmit);
+
   return (
     <Center w='100%'>
       <Box

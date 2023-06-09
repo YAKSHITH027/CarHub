@@ -67,8 +67,7 @@ const SignUp = () => {
       console.log(error)
     }
   }
-  console.log(errors)
-  // console.log("hello", register, handleSubmit);
+
   return (
     <Center w='100%' mt='8rem'>
       <Box

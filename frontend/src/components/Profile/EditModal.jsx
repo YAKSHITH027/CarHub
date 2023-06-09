@@ -94,7 +94,6 @@ function AddandEditModal({
   })
 
   const handleChangeFile = (e) => {
-    console.log(e.target.files[0])
     if (e.target.files.length) {
       setUrl(URL.createObjectURL(e.target.files[0]))
       setFile(e.target.files[0])

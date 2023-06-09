@@ -43,12 +43,12 @@ function AddandEditModal() {
   }
   const fetchSuggestion = async () => {
     if (!text) return
-    console.log('gone')
+
     try {
       const res = await axios(
         `https://carhub-mlki.onrender.com/oem?text=${text}`
       )
-      console.log('came')
+
       setSuggestions(res.data)
     } catch (error) {
       console.log(error)
@@ -68,7 +68,6 @@ function AddandEditModal() {
   } = useForm()
 
   const handleChangeFile = (e) => {
-    console.log(e.target.files[0])
     if (e.target.files.length) {
       setUrl(URL.createObjectURL(e.target.files[0]))
       setFile(e.target.files[0])
@@ -78,7 +77,6 @@ function AddandEditModal() {
   async function handleLogin(data) {
     setLoading(true)
     data.OEM = picked
-    console.log('data', data)
 
     dispatch(addDealerCars(token, data, file))
     setLoading(false)
