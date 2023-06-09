@@ -35,7 +35,7 @@ function AddandEditModal() {
   const [picked, setPicked] = useState({})
   const [file, setFile] = useState('')
   const [url, setUrl] = useState('')
-  const { userName, token } = JSON.parse(localStorage.getItem('userInfo'))
+  const token = localStorage.getItem('token')
   const dispatch = useDispatch()
 
   const handleChange = (e) => {

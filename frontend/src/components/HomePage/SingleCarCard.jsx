@@ -29,7 +29,7 @@ const SingleCarCard = (props) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const toast = useToast()
-  const { userName, token } = JSON.parse(localStorage.getItem('userInfo'))
+  const token = localStorage.getItem('token')
 
   const handleRoute = () => {
     navigate(`/${_id}`)

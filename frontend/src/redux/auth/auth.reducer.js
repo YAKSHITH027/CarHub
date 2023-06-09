@@ -1,6 +1,6 @@
 import * as types from './auth.types'
 const initialState = {
-  user: '' || JSON.parse(localStorage.getItem('userInfo')).userName,
+  user: '' || localStorage.getItem('userName'),
   isLoading: false,
   isError: false,
 }

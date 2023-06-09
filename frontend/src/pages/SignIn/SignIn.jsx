@@ -48,7 +48,8 @@ const SignIn = () => {
           position: 'top',
           isClosable: true,
         })
-        localStorage.setItem('userInfo', JSON.stringify(res.data))
+        localStorage.setItem('userName', res.data.userName)
+        localStorage.setItem('token', res.data.token)
         dispatch(userLogin(res.data.userName))
         reset()
         navigate('/')

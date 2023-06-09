@@ -49,7 +49,7 @@ function AddandEditModal({
   const [file, setFile] = useState('')
   const [url, setUrl] = useState('')
   const dispatch = useDispatch()
-  const { userName, token } = JSON.parse(localStorage.getItem('userInfo'))
+  const token = localStorage.getItem('token')
 
   const handleChange = (e) => {
     setText(e.target.value)
@@ -103,7 +103,7 @@ function AddandEditModal({
 
   async function handleLogin(data) {
     setLoading(true)
-    data.OEM = picked.modelName || OEM
+    data.OEM = picked.modelName ? picked : OEM
 
     dispatch(editDealerCars(token, data, file, _id))
     setLoading(false)

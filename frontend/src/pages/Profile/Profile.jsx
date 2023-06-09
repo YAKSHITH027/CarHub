@@ -8,7 +8,8 @@ import { getDealerCars } from '../../redux/dealerCars/dealerCars.actions'
 
 const Profile = () => {
   const dispatch = useDispatch()
-  const { userName, token } = JSON.parse(localStorage.getItem('userInfo'))
+  const userName = localStorage.getItem('userName')
+  const token = localStorage.getItem('token')
   const { dealersCar, isLoading } = useSelector((store) => {
     return store.dealerCarsReducer
   })
