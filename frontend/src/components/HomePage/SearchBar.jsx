@@ -35,11 +35,7 @@ const SearchBar = () => {
   }, [text])
   return (
     <Box pos={'relative'}>
-      <Input
-        placeholder='Search for specification'
-        value={text}
-        onChange={handleChange}
-      />
+      <Input placeholder='Search  car' value={text} onChange={handleChange} />
       <Box
         pos={'absolute'}
         top='3rem'

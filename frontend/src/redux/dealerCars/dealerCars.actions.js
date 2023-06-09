@@ -38,9 +38,9 @@ export const addDealerCars = (token, data, file) => async (dispatch) => {
     await uploadBytes(fileRef, file, metadata)
 
     const avatarURL = await getDownloadURL(fileRef)
-    console.log(avatarURL)
+
     data.img = avatarURL
-    console.log(data)
+
     await axios.post('https://carhub-mlki.onrender.com/cars/add', data, {
       headers: {
         'Content-Type': 'application/json',
@@ -64,9 +64,8 @@ export const editDealerCars = (token, data, file, _id) => async (dispatch) => {
     await uploadBytes(fileRef, file, metadata)
 
     const avatarURL = await getDownloadURL(fileRef)
-    console.log(avatarURL)
+
     data.img = avatarURL
-    console.log(data)
   }
 
   try {

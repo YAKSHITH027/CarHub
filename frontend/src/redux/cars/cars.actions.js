@@ -11,7 +11,6 @@ export const carsGet = (payload) => {
 }
 
 export const getCars = (params) => async (dispatch) => {
-  console.log('hello', params)
   try {
     dispatch(carsRequest())
     let res = await axios.get('https://carhub-mlki.onrender.com/cars', {
