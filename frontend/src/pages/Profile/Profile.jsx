@@ -8,17 +8,12 @@ const Profile = () => {
   const [addedCars, setAddedCars] = useState([])
   const { userName } = JSON.parse(localStorage.getItem('userInfo'))
   let fetch = async () => {
-    let res = await axios.get(
-      'https://carhub-mlki.onrender.com/cars/64818a9373a3df228512de06',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `${
-            JSON.parse(localStorage.getItem('userInfo')).token
-          }`,
-        },
-      }
-    )
+    let res = await axios.get('https://carhub-mlki.onrender.com/cars/dealer', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${JSON.parse(localStorage.getItem('userInfo')).token}`,
+      },
+    })
     console.log(res)
     setAddedCars(res.data)
   }

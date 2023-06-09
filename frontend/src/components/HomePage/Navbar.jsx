@@ -11,14 +11,16 @@ const Navbar = () => {
       justify={'space-between'}
       px='1rem'
     >
-      <Image
-        px={'0.7rem'}
-        py='0.6rem'
-        borderRadius={'md'}
-        src='https://i.ibb.co/TRDL2L6/Car-1-removebg-preview-removebg-preview.png'
-        width={'15rem'}
-        bg={'gray.300'}
-      />
+      <Link to='/'>
+        <Image
+          px={'0.7rem'}
+          py='0.6rem'
+          borderRadius={'md'}
+          src='https://i.ibb.co/TRDL2L6/Car-1-removebg-preview-removebg-preview.png'
+          width={'15rem'}
+          bg={'gray.300'}
+        />
+      </Link>
       <Input placeholder='Search car' maxW='400px' />
       {false ? (
         <Flex gap='1rem'>

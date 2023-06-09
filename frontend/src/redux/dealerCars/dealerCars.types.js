@@ -1,0 +1,6 @@
+export const DEALERS_REQUEST = 'DEALERS_REQUEST'
+export const DEALERS_ERROR = 'DEALERS_ERROR'
+export const DEALERS_GET = 'DEALERS_GET'
+export const DEALERS_ADD = 'DEALERS_ADD'
+export const DEALERS_EDIT = 'DEALERS_EDIT'
+export const DEALERS_DELETE = 'DEALERS_DELETE'

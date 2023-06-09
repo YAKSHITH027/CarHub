@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SingleCarCard from './SingleCarCard'
 import { Grid } from '@chakra-ui/react'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const CarList = () => {
   const data = [
@@ -90,14 +91,17 @@ const CarList = () => {
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
   ]
-  const [list, setList] = useState([])
-  let fetch = async () => {
-    let res = await axios.get('https://carhub-mlki.onrender.com/cars')
-    setList(res.data.allCars)
-  }
-  useEffect(() => {
-    fetch()
-  }, [])
+  // const [list, setList] = useState([])
+  // let fetch = async () => {
+  //   let res = await axios.get('https://carhub-mlki.onrender.com/cars')
+  //   setList(res.data.allCars)
+  // }
+  // useEffect(() => {
+  //   fetch()
+  // }, [])
+  const allCars = useSelector((store) => {
+    return store.carsReducer.cars
+  })
   return (
     <Grid
       templateColumns={{
@@ -110,8 +114,8 @@ const CarList = () => {
       gap={'1rem'}
       p={'1rem'}
     >
-      {list?.map((item) => {
-        return <SingleCarCard key={item.price} {...item} />
+      {allCars?.map((item) => {
+        return <SingleCarCard key={item._id} {...item} />
       })}
     </Grid>
   )

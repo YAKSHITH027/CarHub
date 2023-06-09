@@ -21,7 +21,7 @@ const getCars = async (req, res) => {
     if (maxPrice && minPrice) obj.price = { $gte: +minPrice, $lte: +maxPrice }
     if (maxMileage && minMileage)
       obj['OEM.mileage'] = { $gte: minMileage, $lte: maxMileage }
-    if (color) obj.originalPaint = color
+    if (color) obj.orginalPaint = color
     if (text) obj.title = { $regex: text, $options: 'i' }
 
     page = page || 1
@@ -41,7 +41,8 @@ const getCars = async (req, res) => {
   }
 }
 const getDealersCar = async (req, res) => {
-  let dealerId = req.params.dealerId
+  let dealerId = req.body.userId
+
   try {
     let allCars = await CarDetailsModel.find({ userId: dealerId })
     res.status(200).send(allCars)

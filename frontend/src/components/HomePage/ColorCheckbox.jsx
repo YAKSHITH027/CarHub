@@ -2,17 +2,13 @@ import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react'
 import { easeIn } from 'framer-motion'
 import React from 'react'
 
-const ColorCheckbox = () => {
+const ColorCheckbox = ({ onChange }) => {
   return (
-    <CheckboxGroup
-      colorScheme='orange'
-      defaultValue={[]}
-      onChange={(e) => console.log(e)}
-    >
+    <CheckboxGroup colorScheme='orange' defaultValue={[]} onChange={onChange}>
       <Stack spacing={[1, 5]} direction={['column']}>
-        <Checkbox value='naruto'>Naruto</Checkbox>
-        <Checkbox value='sasuke'>Sasuke</Checkbox>
-        <Checkbox value='kakashi'>Kakashi</Checkbox>
+        <Checkbox value='white'>White</Checkbox>
+        <Checkbox value='red'>Red</Checkbox>
+        <Checkbox value='black'>Black</Checkbox>
       </Stack>
     </CheckboxGroup>
   )

@@ -1,4 +1,11 @@
 // login form
+export const emptyValidate = {
+  required: {
+    value: true,
+    message: 'Please enter the field',
+  },
+}
+
 export const usernameValidate = {
   required: {
     value: true,
@@ -13,6 +20,7 @@ export const usernameValidate = {
     message: 'Username must be alphanumeric',
   },
 }
+
 export const emailValidate = {
   required: {
     value: true,

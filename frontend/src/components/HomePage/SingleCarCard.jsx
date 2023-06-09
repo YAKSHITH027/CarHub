@@ -3,17 +3,19 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import EditModal from '../Profile/EditModal'
 
-const SingleCarCard = ({
-  _id,
-  img,
-  title,
-  price,
-  kms,
-  orginalPaint,
-  handleEdit,
-  handleDelete,
-  currentUser,
-}) => {
+const SingleCarCard = (props) => {
+  const {
+    _id,
+    img,
+    title,
+    price,
+    kms,
+    OEM,
+    orginalPaint,
+    handleEdit,
+    handleDelete,
+    currentUser,
+  } = props
   const navigate = useNavigate()
   const handleRoute = () => {
     navigate(`/${_id}`)
@@ -26,7 +28,7 @@ const SingleCarCard = ({
       boxShadow={'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'}
     >
       <Box onClick={handleRoute} cursor={'pointer'}>
-        <Image src={img} />
+        <Image src={img} alt={title} width='350px' height='200px' />
         <Box p={'1rem'}>
           <Flex gap={'1rem'} align={'center'}>
             <Heading fontWeight={'500'} fontSize={'1.2rem'}>
@@ -40,7 +42,10 @@ const SingleCarCard = ({
               ₹{price} Lacks
             </Text>
           </Flex>
-          <Text> Color:{orginalPaint}</Text>
+          <Flex>
+            <Text> Color:{orginalPaint}</Text>
+            <Text>| Mileage:{OEM.mileage}</Text>
+          </Flex>
           <Flex gap={'0.7rem'} align={'center'}>
             <Text>{kms}kms</Text>
             <Text>| Petrol</Text>
@@ -51,7 +56,7 @@ const SingleCarCard = ({
       </Box>
       {currentUser && (
         <Flex justify={'space-between'} px='1rem' pb='0.5rem'>
-          <EditModal />
+          <EditModal {...props} />
           <Button onClick={handleDelete} colorScheme='red'>
             Delete
           </Button>
