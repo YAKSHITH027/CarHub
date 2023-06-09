@@ -1,4 +1,3 @@
-
 <h1 align="center">CarHub</h1>
 
 
@@ -30,7 +29,7 @@
 <h4 align="center">Deployed On:</h4>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="netlify" />
+  <img src="https://img.shields.io/badge/vercel-00C7B7?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
   <img src="https://img.shields.io/badge/Render-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="render" />
 </p>
 
@@ -43,7 +42,7 @@
 
 
 
-## Live link : <a href="">CarHub</a>
+## Live link : <a href="https://carhub-sepia.vercel.app/">CarHub</a>
 
 
 
@@ -69,16 +68,41 @@
 
 
 ## Glimpses of CarHub.com  :
+# home page
 
+ -- this include search bar for searching a particular car
+ 
+ -- filters for price color and mileage
+ 
+ -- naigation bar for diffrent pages (profile,signup,signin)
+ 
 <img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/home.png'/>
+
+# Profile
+  -- user can add edit and delete the Cars
+  
 <img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/profile.png'/>
+
+# Add modal
+  -- for adding a new car
+  
 <img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/addmodal.png'/>
+
+# Edit modal
+
 <img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/edit.png'/>
+
+# Detailed Car page
+
 <img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/singlecar.png'/>
+
+# Signup
 <img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/signup.png'/>
+
+#SignIn
+
 <img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/login.png'/>
 
 
 
 <br />
-
