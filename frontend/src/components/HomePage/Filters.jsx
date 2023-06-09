@@ -14,8 +14,8 @@ import SortPrice from './SortPrice'
 import { useDispatch } from 'react-redux'
 import { getCars } from '../../redux/cars/cars.actions'
 const Filters = () => {
-  const [priceRange, setPriceRange] = useState([0, 5000000])
-  const [mileage, setMileageRange] = useState([0, 60])
+  const [priceRange, setPriceRange] = useState([0, 3000000])
+  const [mileage, setMileageRange] = useState([0, 40])
   const [color, setColor] = useState([])
   const dispatch = useDispatch()
 
@@ -53,7 +53,7 @@ const Filters = () => {
       px='2rem'
       py='2rem'
     >
-      <SortPrice />
+      {/* <SortPrice /> */}
       <RangeFilter
         onChange={handlePriceRange}
         min={0}
@@ -64,11 +64,11 @@ const Filters = () => {
       />
       <RangeFilter
         onChange={handleMileageRange}
-        min={5}
-        max={60}
+        min={0}
+        max={40}
         title={'Mileage'}
         priceRange={mileage}
-        step={5}
+        step={3}
       />
       <ColorCheckbox onChange={handleColor} />
     </Flex>

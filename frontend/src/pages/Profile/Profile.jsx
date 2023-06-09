@@ -1,25 +1,28 @@
-import { Box, Flex, Grid, Heading } from '@chakra-ui/react'
+import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import SingleCarCard from '../../components/HomePage/SingleCarCard'
 import axios from 'axios'
 import AddandEditModal from '../../components/Profile/AddandEditModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { getDealerCars } from '../../redux/dealerCars/dealerCars.actions'
 
 const Profile = () => {
-  const [addedCars, setAddedCars] = useState([])
-  const { userName } = JSON.parse(localStorage.getItem('userInfo'))
-  let fetch = async () => {
-    let res = await axios.get('https://carhub-mlki.onrender.com/cars/dealer', {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `${JSON.parse(localStorage.getItem('userInfo')).token}`,
-      },
-    })
-    console.log(res)
-    setAddedCars(res.data)
-  }
+  const dispatch = useDispatch()
+  const { userName, token } = JSON.parse(localStorage.getItem('userInfo'))
+  const { dealersCar, isLoading } = useSelector((store) => {
+    return store.dealerCarsReducer
+  })
+  // console.log(dealerCars)
+
   useEffect(() => {
-    fetch()
+    dispatch(getDealerCars(token))
   }, [])
+  if (isLoading)
+    return (
+      <Text textAlign={'center'} mt='3rem'>
+        ...Loading
+      </Text>
+    )
   return (
     <Box>
       <Flex
@@ -45,16 +48,9 @@ const Profile = () => {
         gap={'1rem'}
         p={'1rem'}
       >
-        {addedCars?.map((item) => {
+        {dealersCar?.map((item) => {
           return (
-            <SingleCarCard
-              key={item.price}
-              {...item}
-              currentUser='yes'
-              handleEdit={(id) => {
-                console.log('hello', id)
-              }}
-            />
+            <SingleCarCard key={item.price} {...item} currentUser={userName} />
           )
         })}
       </Grid>

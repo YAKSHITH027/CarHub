@@ -42,7 +42,7 @@ const SignUp = () => {
 
       if (res.status === 201) {
         toast({
-          title: 'login successful',
+          title: 'registered successfully',
           description: 'have a great day.',
           status: 'success',
           duration: 4000,
@@ -50,7 +50,7 @@ const SignUp = () => {
           isClosable: true,
         })
         reset()
-        navigate('/')
+        navigate('/signin')
       }
 
       setLoading(false)

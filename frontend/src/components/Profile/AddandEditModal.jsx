@@ -25,6 +25,8 @@ import { emptyValidate } from '../../utils/validations'
 import { useForm } from 'react-hook-form'
 import { storage } from '../../utils/firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { useDispatch } from 'react-redux'
+import { addDealerCars } from '../../redux/dealerCars/dealerCars.actions'
 function AddandEditModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [suggesions, setSuggestions] = useState([])
@@ -33,16 +35,20 @@ function AddandEditModal() {
   const [picked, setPicked] = useState({})
   const [file, setFile] = useState('')
   const [url, setUrl] = useState('')
+  const { userName, token } = JSON.parse(localStorage.getItem('userInfo'))
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     setText(e.target.value)
   }
   const fetchSuggestion = async () => {
     if (!text) return
+    console.log('gone')
     try {
       const res = await axios(
         `https://carhub-mlki.onrender.com/oem?text=${text}`
       )
+      console.log('came')
       setSuggestions(res.data)
     } catch (error) {
       console.log(error)
@@ -74,40 +80,17 @@ function AddandEditModal() {
     data.OEM = picked
     console.log('data', data)
 
-    try {
-      const fileRef = ref(storage, 'avatars/' + `image${Date.now()}`)
-      const metadata = {
-        contentType: 'image/jpeg',
-      }
-
-      await uploadBytes(fileRef, file, metadata)
-
-      const avatarURL = await getDownloadURL(fileRef)
-      console.log(avatarURL)
-      data.img = avatarURL
-      console.log(data)
-      await axios.post('https://carhub-mlki.onrender.com/cars/add', data, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `${
-            JSON.parse(localStorage.getItem('userInfo')).token
-          }`,
-        },
-      })
-      setLoading(false)
-      onClose()
-    } catch (error) {
-      toast({
-        title: 'login failed',
-        description: error.message,
-        status: 'error',
-        position: 'top',
-        duration: 4000,
-        isClosable: true,
-      })
-      setLoading(false)
-      console.log(error)
-    }
+    dispatch(addDealerCars(token, data, file))
+    setLoading(false)
+    toast({
+      title: 'Car added successfully',
+      description: 'have a great day.',
+      status: 'success',
+      duration: 4000,
+      position: 'top',
+      isClosable: true,
+    })
+    onClose()
   }
   useEffect(() => {
     fetchSuggestion()
@@ -221,7 +204,6 @@ function AddandEditModal() {
                     <FormLabel>kms</FormLabel>
                     <Input
                       type='text'
-                      value='4444'
                       placeholder='kms'
                       {...register('kms', emptyValidate)}
                     />

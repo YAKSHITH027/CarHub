@@ -16,11 +16,14 @@ import { useForm } from 'react-hook-form'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { emailValidate, passwordValidate } from '../../utils/validations'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { userLogin } from '../../redux/auth/auth.actions'
 
 const SignIn = () => {
   const [isLoading, setLoading] = useState(false)
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const toast = useToast()
   const {
     register,
@@ -46,6 +49,7 @@ const SignIn = () => {
           isClosable: true,
         })
         localStorage.setItem('userInfo', JSON.stringify(res.data))
+        dispatch(userLogin(res.data.userName))
         reset()
         navigate('/')
       }

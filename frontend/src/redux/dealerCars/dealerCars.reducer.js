@@ -13,7 +13,7 @@ export const reducer = (state = initialState, action) => {
     case types.DEALERS_ERROR:
       return { ...state, isLoading: false, isError: true }
     case types.DEALERS_GET:
-      return { ...state, dealersCar: payload }
+      return { ...state, dealersCar: payload, isLoading: false }
     default:
       return state
   }

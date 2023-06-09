@@ -1,8 +1,16 @@
-import { Avatar, Button, Flex, Image, Input } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Image, Input } from '@chakra-ui/react'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { userLogout } from '../../redux/auth/auth.actions'
+import SearchBar from './SearchBar'
 
 const Navbar = () => {
+  const user = useSelector((store) => store.authReducer.user)
+  const dispatch = useDispatch()
+  const handleClick = () => {
+    dispatch(userLogout())
+  }
   return (
     <Flex
       p={'0.5rem'}
@@ -21,16 +29,25 @@ const Navbar = () => {
           bg={'gray.300'}
         />
       </Link>
-      <Input placeholder='Search car' maxW='400px' />
-      {false ? (
+      <Box maxW='400px' width={'50%'}>
+        <SearchBar />
+      </Box>
+      {!user ? (
         <Flex gap='1rem'>
-          <Button variant={'outline'}>Sign In</Button>
-          <Button colorScheme='orange'>Sign Up</Button>
+          <Link to='/signin'>
+            <Button variant={'outline'}>Sign In</Button>
+          </Link>
+          <Link to='/signup'>
+            <Button colorScheme='orange'>Sign Up</Button>
+          </Link>
         </Flex>
       ) : (
-        <Link to='/profile'>
-          <Avatar name='yakshith' />
-        </Link>
+        <Flex gap={'1rem'} align={'center'}>
+          <Link to='/profile'>
+            <Avatar name='yakshith' />
+          </Link>
+          <Button onClick={handleClick}>Logout</Button>
+        </Flex>
       )}
     </Flex>
   )

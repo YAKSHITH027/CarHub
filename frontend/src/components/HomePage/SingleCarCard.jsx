@@ -1,7 +1,17 @@
-import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useToast,
+} from '@chakra-ui/react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import EditModal from '../Profile/EditModal'
+import { useDispatch } from 'react-redux'
+import { deleteDealerCars } from '../../redux/dealerCars/dealerCars.actions'
 
 const SingleCarCard = (props) => {
   const {
@@ -13,12 +23,27 @@ const SingleCarCard = (props) => {
     OEM,
     orginalPaint,
     handleEdit,
-    handleDelete,
+
     currentUser,
   } = props
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const toast = useToast()
+  const { userName, token } = JSON.parse(localStorage.getItem('userInfo'))
+
   const handleRoute = () => {
     navigate(`/${_id}`)
+  }
+  const handleDelete = (_id) => {
+    dispatch(deleteDealerCars(token, _id))
+    toast({
+      title: 'Car deleted successfully',
+      description: 'have a great day.',
+      status: 'success',
+      duration: 4000,
+      position: 'top',
+      isClosable: true,
+    })
   }
   return (
     <Flex
@@ -42,9 +67,14 @@ const SingleCarCard = (props) => {
               ₹{price} Lacks
             </Text>
           </Flex>
-          <Flex>
-            <Text> Color:{orginalPaint}</Text>
-            <Text>| Mileage:{OEM.mileage}</Text>
+          <Flex my='5px'>
+            <Text fontSize={'1.1rem'} fontWeight={'700'}>
+              {' '}
+              Color:{orginalPaint}
+            </Text>
+            <Text fontSize={'1.1rem'} fontWeight={'700'}>
+              | Mileage:{OEM.mileage}
+            </Text>
           </Flex>
           <Flex gap={'0.7rem'} align={'center'}>
             <Text>{kms}kms</Text>
@@ -57,7 +87,7 @@ const SingleCarCard = (props) => {
       {currentUser && (
         <Flex justify={'space-between'} px='1rem' pb='0.5rem'>
           <EditModal {...props} />
-          <Button onClick={handleDelete} colorScheme='red'>
+          <Button onClick={() => handleDelete(_id)} colorScheme='red'>
             Delete
           </Button>
         </Flex>

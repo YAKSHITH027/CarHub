@@ -25,6 +25,8 @@ import { emptyValidate } from '../../utils/validations'
 import { useForm } from 'react-hook-form'
 import { storage } from '../../utils/firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { useDispatch } from 'react-redux'
+import { editDealerCars } from '../../redux/dealerCars/dealerCars.actions'
 function AddandEditModal({
   kms,
   _id,
@@ -46,6 +48,8 @@ function AddandEditModal({
   const [picked, setPicked] = useState({})
   const [file, setFile] = useState('')
   const [url, setUrl] = useState('')
+  const dispatch = useDispatch()
+  const { userName, token } = JSON.parse(localStorage.getItem('userInfo'))
 
   const handleChange = (e) => {
     setText(e.target.value)
@@ -100,48 +104,18 @@ function AddandEditModal({
   async function handleLogin(data) {
     setLoading(true)
     data.OEM = picked.modelName || OEM
-    console.log('data', data)
-    if (file) {
-      const fileRef = ref(storage, 'avatars/' + `image${Date.now()}`)
-      const metadata = {
-        contentType: 'image/jpeg',
-      }
 
-      await uploadBytes(fileRef, file, metadata)
-
-      const avatarURL = await getDownloadURL(fileRef)
-      console.log(avatarURL)
-      data.img = avatarURL
-      console.log(data)
-    }
-
-    try {
-      await axios.patch(
-        `https://carhub-mlki.onrender.com/cars/update/${_id}`,
-        data,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `${
-              JSON.parse(localStorage.getItem('userInfo')).token
-            }`,
-          },
-        }
-      )
-      setLoading(false)
-      onClose()
-    } catch (error) {
-      toast({
-        title: 'login failed',
-        description: error.message,
-        status: 'error',
-        position: 'top',
-        duration: 4000,
-        isClosable: true,
-      })
-      setLoading(false)
-      console.log(error)
-    }
+    dispatch(editDealerCars(token, data, file, _id))
+    setLoading(false)
+    toast({
+      title: 'Car edited successfully',
+      description: 'have a great day.',
+      status: 'success',
+      duration: 4000,
+      position: 'top',
+      isClosable: true,
+    })
+    onClose()
   }
   useEffect(() => {
     fetchSuggestion()
@@ -150,7 +124,7 @@ function AddandEditModal({
   return (
     <>
       <Button onClick={onOpen} colorScheme='teal'>
-        Add Car
+        Edit
       </Button>
 
       <Modal
@@ -161,7 +135,7 @@ function AddandEditModal({
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Add Car</ModalHeader>
+          <ModalHeader>Edit Car</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Box pos={'relative'}>
@@ -214,7 +188,6 @@ function AddandEditModal({
                   <Input
                     textTransform={'none'}
                     type='text'
-                    value={title}
                     placeholder='title'
                     {...register('title', emptyValidate)}
                   />
