@@ -44,7 +44,7 @@ const Navbar = () => {
       ) : (
         <Flex gap={'1rem'} align={'center'}>
           <Link to='/profile'>
-            <Avatar name='yakshith' />
+            <Avatar name={user} />
           </Link>
           <Button onClick={handleClick}>Logout</Button>
         </Flex>

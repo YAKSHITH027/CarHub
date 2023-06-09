@@ -36,28 +36,30 @@ const SearchBar = () => {
   return (
     <Box pos={'relative'}>
       <Input placeholder='Search  car' value={text} onChange={handleChange} />
-      <Box
-        pos={'absolute'}
-        top='3rem'
-        borderWidth={'1px'}
-        width={'full'}
-        bg={'white'}
-      >
-        {suggesions.map((item) => {
-          return (
-            <Text
-              key={item._id}
-              cursor={'pointer'}
-              p='0.4rem'
-              onClick={() => {
-                handleClickSuggetion(item)
-              }}
-            >
-              {item.title}
-            </Text>
-          )
-        })}
-      </Box>
+      {text && (
+        <Box
+          pos={'absolute'}
+          top='3rem'
+          borderWidth={'1px'}
+          width={'full'}
+          bg={'white'}
+        >
+          {suggesions.map((item) => {
+            return (
+              <Text
+                key={item._id}
+                cursor={'pointer'}
+                p='0.4rem'
+                onClick={() => {
+                  handleClickSuggetion(item)
+                }}
+              >
+                {item.title}
+              </Text>
+            )
+          })}
+        </Box>
+      )}
     </Box>
   )
 }

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+
 import {
   Box,
   Flex,
@@ -28,6 +29,7 @@ const Filters = () => {
   const handleColor = (e) => {
     setColor(e)
   }
+  const debounce = useRef(null)
   useEffect(() => {
     let params = {}
     if (priceRange[0] > 0 || priceRange[1] < 3000000) {
@@ -41,7 +43,12 @@ const Filters = () => {
 
     if (color.length) params.color = color
     console.log(params)
-    dispatch(getCars(params))
+    debounce.current = setTimeout(() => {
+      dispatch(getCars(params))
+    }, 300)
+    return () => {
+      clearTimeout(debounce.current)
+    }
   }, [priceRange, color, mileage])
 
   return (
