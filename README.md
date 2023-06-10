@@ -1,4 +1,4 @@
-<h1 align="center">CarHub</h1>
+<h1 align="center">Buy Car</h1>
 
 
 <br />
@@ -67,7 +67,7 @@
  
 
 
-## Glimpses of CarHub.com  :
+## Glimpses of BuyCar.com  :
 # home page
 
  -- this include search bar for searching a particular car
