@@ -75,6 +75,28 @@ function AddandEditModal() {
   }
 
   async function handleLogin(data) {
+    if (!picked.modelName) {
+      toast({
+        title: 'Please select car Specification',
+
+        status: 'success',
+        duration: 4000,
+        position: 'top',
+        isClosable: true,
+      })
+      return
+    }
+    if (!file) {
+      toast({
+        title: 'Please select car Image',
+
+        status: 'success',
+        duration: 4000,
+        position: 'top',
+        isClosable: true,
+      })
+      return
+    }
     setLoading(true)
     data.OEM = picked
 
@@ -111,48 +133,55 @@ function AddandEditModal() {
           <ModalHeader>Add Car</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <Text my='0.5rem'>Search Car Specification</Text>
             <Box pos={'relative'}>
               <Input
-                placeholder='Search for specification'
+                placeholder='Search for specification ex: mahindra'
                 value={text}
                 onChange={handleChange}
               />
-              <Box
-                pos={'absolute'}
-                top='3rem'
-                borderWidth={'1px'}
-                width={'full'}
-                bg={'white'}
-              >
-                {suggesions.map((item) => {
-                  return (
-                    <Text
-                      key={item._id}
-                      p='0.4rem'
-                      onClick={() => {
-                        handleClickSuggetion(item)
-                      }}
-                    >
-                      {item.modelName}
-                    </Text>
-                  )
-                })}
-              </Box>
+              {text && (
+                <Box
+                  pos={'absolute'}
+                  top='3rem'
+                  borderWidth={'1px'}
+                  width={'full'}
+                  bg={'white'}
+                  zIndex={'100'}
+                >
+                  {suggesions.map((item) => {
+                    return (
+                      <Text
+                        key={item._id}
+                        p='0.4rem'
+                        bg='white'
+                        onClick={() => {
+                          handleClickSuggetion(item)
+                        }}
+                      >
+                        {item.modelName}
+                      </Text>
+                    )
+                  })}
+                </Box>
+              )}
             </Box>
-            {}
-            <Flex flexDir={'column'} gap='1rem' mt='1rem' p='1rem'>
-              <Flex gap={'3rem'}>
-                <Text>ModelName:{picked.modelName}</Text>
-                <Text>Year of Model:{picked.yearOfModel}</Text>
-                <Text>Original Price:{picked.price}</Text>
+
+            {picked.modelName && (
+              <Flex flexDir={'column'} gap='1rem' mt='1rem' p='1rem'>
+                <Flex gap={'3rem'}>
+                  <Text>ModelName:{picked.modelName}</Text>
+                  <Text>Year of Model:{picked.yearOfModel}</Text>
+                  <Text>Original Price:{picked.price}</Text>
+                </Flex>
+                <Flex gap={'3rem'}>
+                  <Text>color:{picked.colors}</Text>
+                  <Text>mileage:{picked.mileage}</Text>
+                  <Text>power:{picked.power}</Text>
+                  <Text>maxSpeed:{picked.maxSpeed}</Text>
+                </Flex>
               </Flex>
-              <Flex gap={'3rem'}>
-                <Text>color:{picked.colors}</Text>
-                <Text>mileage:{picked.mileage}</Text>
-                <Text>power:{picked.power}</Text>
-                <Text>maxSpeed:{picked.maxSpeed}</Text>
-              </Flex>
-            </Flex>
+            )}
             <Text my='1rem'>Extra details</Text>
             <Box>
               <form onSubmit={handleSubmit(handleLogin)}>
@@ -201,8 +230,8 @@ function AddandEditModal() {
                   <FormControl isInvalid={errors.kms}>
                     <FormLabel>kms</FormLabel>
                     <Input
-                      type='text'
-                      placeholder='kms'
+                      type='number'
+                      placeholder='ex: 1200'
                       {...register('kms', emptyValidate)}
                     />
                     <FormErrorMessage>{errors.kms?.message}</FormErrorMessage>
@@ -210,8 +239,8 @@ function AddandEditModal() {
                   <FormControl isInvalid={errors.price}>
                     <FormLabel>price</FormLabel>
                     <Input
-                      type='text'
-                      placeholder='price'
+                      type='number'
+                      placeholder='ex : 400000'
                       {...register('price', emptyValidate)}
                     />
                     <FormErrorMessage>{errors.price?.message}</FormErrorMessage>
@@ -220,7 +249,7 @@ function AddandEditModal() {
                     <FormLabel>majorScratches</FormLabel>
                     <Input
                       type='text'
-                      placeholder='majorScratches'
+                      placeholder='ex : Yes/No'
                       {...register('majorScratches', emptyValidate)}
                     />
                     <FormErrorMessage>
@@ -243,8 +272,8 @@ function AddandEditModal() {
                   <FormControl isInvalid={errors.numberOfAccidents}>
                     <FormLabel>numberOfAccidents</FormLabel>
                     <Input
-                      type='text'
-                      placeholder='numberOfAccidents'
+                      type='number'
+                      placeholder='ex: 3'
                       {...register('numberOfAccidents', emptyValidate)}
                     />
                     <FormErrorMessage>
@@ -254,8 +283,8 @@ function AddandEditModal() {
                   <FormControl isInvalid={errors.prevBuyers}>
                     <FormLabel>prevBuyers</FormLabel>
                     <Input
-                      type='text'
-                      placeholder='prevBuyers'
+                      type='number'
+                      placeholder='ex : 2'
                       {...register('prevBuyers', emptyValidate)}
                     />
                     <FormErrorMessage>
@@ -266,7 +295,7 @@ function AddandEditModal() {
                     <FormLabel>registrationPlace</FormLabel>
                     <Input
                       type='text'
-                      placeholder='registrationPlace'
+                      placeholder='ex : udupi'
                       {...register('registrationPlace', emptyValidate)}
                     />
                     <FormErrorMessage>

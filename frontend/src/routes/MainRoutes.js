@@ -5,6 +5,7 @@ import SignIn from '../pages/SignIn/SignIn'
 import SignUp from '../pages/SignUp/SignUp'
 import Profile from '../pages/Profile/Profile'
 import SingleCarDetail from '../pages/SingleCarDetail/SingleCarDetail'
+import PrivateRoute from './PrivateRoute'
 
 const MainRoutes = () => {
   return (
@@ -13,7 +14,14 @@ const MainRoutes = () => {
       <Route path='/:id' element={<SingleCarDetail />} />
       <Route path='/signin' element={<SignIn />} />
       <Route path='/signup' element={<SignUp />} />
-      <Route path='/profile' element={<Profile />} />
+      <Route
+        path='/profile'
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   )
 }

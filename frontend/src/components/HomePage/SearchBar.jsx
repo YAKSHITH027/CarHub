@@ -43,6 +43,7 @@ const SearchBar = () => {
           borderWidth={'1px'}
           width={'full'}
           bg={'white'}
+          minH={text ? '5rem' : null}
         >
           {suggesions.map((item) => {
             return (

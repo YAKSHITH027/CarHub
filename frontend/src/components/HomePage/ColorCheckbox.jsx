@@ -9,6 +9,7 @@ const ColorCheckbox = ({ onChange }) => {
         <Checkbox value='white'>White</Checkbox>
         <Checkbox value='red'>Red</Checkbox>
         <Checkbox value='black'>Black</Checkbox>
+        <Checkbox value='grey'>Grey</Checkbox>
       </Stack>
     </CheckboxGroup>
   )

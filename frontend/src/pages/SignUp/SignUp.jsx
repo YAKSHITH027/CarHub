@@ -114,7 +114,7 @@ const SignUp = () => {
           <Button
             mt={4}
             type='submit'
-            colorScheme={'teal'}
+            colorScheme={'orange'}
             width='100%'
             isLoading={isLoading}
           >

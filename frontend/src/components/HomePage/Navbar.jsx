@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Image, Input } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Image, Input, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -10,6 +10,7 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const handleClick = () => {
     dispatch(userLogout())
+    localStorage.setItem('userName', '')
   }
   return (
     <Flex
@@ -24,8 +25,8 @@ const Navbar = () => {
           px={'0.7rem'}
           py='0.6rem'
           borderRadius={'md'}
-          src='https://i.ibb.co/TRDL2L6/Car-1-removebg-preview-removebg-preview.png'
-          width={'15rem'}
+          src='https://i.ibb.co/FnGS38Q/Buy-Car-removebg-preview.png'
+          width={'10rem'}
           bg={'gray.300'}
         />
       </Link>
@@ -44,7 +45,12 @@ const Navbar = () => {
       ) : (
         <Flex gap={'1rem'} align={'center'}>
           <Link to='/profile'>
-            <Avatar name={user} />
+            <Button>
+              <Flex align={'center'} gap={'1rem'}>
+                <Text fontSize={'1rem'}>Profile</Text>
+                <Avatar size={'sm'} name={user} />
+              </Flex>
+            </Button>
           </Link>
           <Button onClick={handleClick}>Logout</Button>
         </Flex>
