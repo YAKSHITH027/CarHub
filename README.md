@@ -15,7 +15,10 @@
   <img src="https://img.shields.io/badge/Chakra%20UI-3bc7bd?style=for-the-badge&logo=chakraui&logoColor=white" alt="chakra-ui" />
   <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="javascript" />
   <img src="https://img.shields.io/badge/firebase-20232A?style=for-the-badge&logo=firebase&logoColor=#fa9911" alt="restAPI" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="css3" />
+
+  <img src="https://img.shields.io/badge/Node.js-1572B6?style=for-the-badge&logo=css3&logoColor=green" alt="css3" />
+  <img src="https://img.shields.io/badge/MongodDB-1572B6?style=for-the-badge&logo=css3&logoColor=orange" alt="css3" />
+
  
 </p>
 
@@ -42,7 +45,7 @@
 
 
 
-## Live link : <a href="https://carhub-sepia.vercel.app/">CarHub</a>
+## Live link : <a href="https://carhub-sepia.vercel.app/">BuyCar</a>
 
 
 
