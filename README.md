@@ -79,32 +79,32 @@
  
  -- naigation bar for diffrent pages (profile,signup,signin)
  
-<img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/home.png'/>
+<img src='https://github.com/YAKSHITH027/store-img/blob/master/buyCar/home.png'/>
 
 # Profile
   -- user can add edit and delete the Cars
   
-<img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/profile.png'/>
+<img src='https://github.com/YAKSHITH027/store-img/blob/master/buyCar/Screenshot%20(102).png'/>
 
 # Add modal
   -- for adding a new car
   
-<img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/addmodal.png'/>
+<img src='https://github.com/YAKSHITH027/store-img/blob/master/buyCar/Screenshot%20(103).png'/>
 
 # Edit modal
 
-<img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/edit.png'/>
+<img src='https://github.com/YAKSHITH027/store-img/blob/master/buyCar/Screenshot%20(104).png'/>
 
 # Detailed Car page
 
-<img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/singlecar.png'/>
+<img src='https://github.com/YAKSHITH027/store-img/blob/master/buyCar/Screenshot%20(105).png'/>
 
 # Signup
-<img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/signup.png'/>
+<img src='https://github.com/YAKSHITH027/store-img/blob/master/buyCar/Screenshot%20(106).png'/>
 
 #SignIn
 
-<img src='https://github.com/YAKSHITH027/store-img/blob/master/Carhub/login.png'/>
+<img src='https://github.com/YAKSHITH027/store-img/blob/master/buyCar/Screenshot%20(107).png'/>
 
 
 
